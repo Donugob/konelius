@@ -1,22 +1,21 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  AnimatePresence,
-} from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Lenis from "lenis";
 import {
-  ArrowDown,
+  ArrowRight,
   Twitter,
   Linkedin,
   Instagram,
   Mail,
-  X,
-  Camera,
-  ArrowRight,
+  Award,
+  Gavel,
+  Users,
+  Mic,
 } from "lucide-react";
+
+// --- THE NEW VIBE: PRESIDENTIAL MODERN ---
+// Colors: Deep Navy, Paper Cream, Gold Accents
 
 export default function Home() {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -39,553 +38,435 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="w-full min-h-screen bg-[#F4F4F0] text-[#111111]">
+    <main className="w-full min-h-screen bg-[#0f172a] text-[#F8FAFC] selection:bg-[#ca8a04] selection:text-black">
       <NavBar />
       <HeroSection />
-      <TheBrief />
-      <Precedents onItemClick={setSelectedItem} />
+      <AboutSection />
+      <BentoGridAchievements />
       <VisionSection />
       <Footer />
-      <CaseFileDrawer
-        item={selectedItem}
-        onClose={() => setSelectedItem(null)}
-      />
     </main>
   );
 }
 
-// NAVBAR -------------------------------------------------------
+// ----------------------------------------------------------------------
+// 1. NAVBAR (Glassmorphism)
+// ----------------------------------------------------------------------
 function NavBar() {
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-0 left-0 w-full px-6 py-6 md:px-12 flex justify-between items-center z-50 mix-blend-difference text-[#F4F4F0]"
-    >
-      <div className="text-sm font-bold tracking-widest uppercase font-sans">
+    <nav className="fixed top-0 left-0 w-full px-6 py-5 z-50 flex justify-between items-center backdrop-blur-md bg-[#0f172a]/70 border-b border-white/10">
+      <div className="text-lg font-bold tracking-tighter uppercase font-serif text-white">
         U.C.E.
       </div>
-      <div className="hidden md:flex gap-8 text-xs font-medium uppercase tracking-widest">
-        <a href="#about" className="hover:opacity-50 transition-opacity">
-          The Brief
+      <div className="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-gray-300">
+        <a href="#about" className="hover:text-[#ca8a04] transition-colors">
+          The Man
         </a>
-        <a href="#achievements" className="hover:opacity-50 transition-opacity">
-          Precedents
+        <a
+          href="#track-record"
+          className="hover:text-[#ca8a04] transition-colors"
+        >
+          The Record
         </a>
-        <a href="#vision" className="hover:opacity-50 transition-opacity">
-          Vision
+        <a href="#vision" className="hover:text-[#ca8a04] transition-colors">
+          The Plan
         </a>
       </div>
-      <div className="md:hidden text-xs font-bold uppercase">Menu</div>
-    </motion.nav>
+      <a
+        href="#contact"
+        className="px-5 py-2 bg-[#ca8a04] text-[#0f172a] text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors rounded-sm"
+      >
+        Join The Movement
+      </a>
+    </nav>
   );
 }
 
-// HERO SECTION (NOW WITH IMAGE SLOT) ---------------------------
-// HERO SECTION (Fixed: Split Editorial Layout) -----------------
+// ----------------------------------------------------------------------
+// 2. HERO SECTION (Bold, Image-Centric, High Energy)
+// ----------------------------------------------------------------------
 function HeroSection() {
-  const containerRef = useRef(null);
+  const ref = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: ref,
     offset: ["start start", "end start"],
   });
-
-  // Parallax effects
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
   return (
     <section
-      ref={containerRef}
-      className="min-h-screen pt-32 md:pt-0 px-6 md:px-12 flex flex-col md:flex-row items-center justify-center gap-12 overflow-hidden"
+      ref={ref}
+      className="relative h-screen w-full flex items-center justify-center overflow-hidden pt-20"
     >
-      {/* LEFT: TEXT CONTENT */}
-      <motion.div
-        style={{ y: textY }}
-        className="flex-1 flex flex-col items-center md:items-start text-center md:text-left z-10"
-      >
+      {/* BACKGROUND GRADIENT BLOBS */}
+      <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-blue-900/30 rounded-full blur-[120px]" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-[#ca8a04]/10 rounded-full blur-[120px]" />
+
+      <div className="relative z-10 max-w-7xl w-full px-6 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+        {/* LEFT: TEXT */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="mb-6 flex flex-col items-center md:items-start"
+          transition={{ duration: 1 }}
+          className="md:col-span-7"
         >
-          <div className="h-[1px] w-12 bg-[#666] mb-4"></div>
-          <p className="text-xs font-semibold tracking-[0.3em] uppercase text-[#666]">
-            Law Student • COOU • Anambra
-          </p>
-        </motion.div>
-
-        <h1 className="font-serif text-[15vw] md:text-[7vw] leading-[0.9] tracking-tighter text-[#111] mb-8">
-          <span className="block overflow-hidden">
-            <motion.span
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="block"
-            >
-              Udemmadu
-            </motion.span>
-          </span>
-          <span className="block overflow-hidden">
-            <motion.span
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="block italic font-light text-[#555]"
-            >
-              Cornelius
-            </motion.span>
-          </span>
-          <span className="block overflow-hidden">
-            <motion.span
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="block"
-            >
-              Ezechukwu
-            </motion.span>
-          </span>
-        </h1>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 1 }}
-          className="max-w-md"
-        >
-          <p className="text-sm md:text-lg font-sans text-[#333] leading-relaxed">
-            Aspirant for the Office of the Vice President
-            <br />
-            <span className="font-semibold border-b border-[#111] pb-1">
-              National LAWSA
+          <div className="flex items-center gap-3 mb-6">
+            <span className="h-[2px] w-12 bg-[#ca8a04]"></span>
+            <span className="text-[#ca8a04] font-mono text-xs uppercase tracking-widest">
+              Vote for Competence
             </span>
+          </div>
+
+          <h1 className="font-serif text-6xl md:text-8xl font-bold leading-[0.9] mb-8 text-white">
+            Udemmadu <br />
+            <span className="text-gray-400 italic font-light">
+              Cornelius
+            </span>{" "}
+            <br />
+            Ezechukwu.
+          </h1>
+
+          <p className="text-lg text-gray-300 max-w-lg leading-relaxed mb-10 border-l-2 border-gray-700 pl-6">
+            Aspirant for <strong>Vice President, National LAWSA</strong>. <br />
+            Bridging the gap between promise and performance for the Nigerian
+            Law Student.
           </p>
-        </motion.div>
-      </motion.div>
 
-      {/* RIGHT: IMAGE FRAME */}
-      <motion.div
-        style={{ y: imageY }}
-        className="flex-1 w-full md:w-auto flex justify-center md:justify-end relative z-0 mb-12 md:mb-0"
-      >
-        {/* Image Container: Constrains size so it never looks 'messed up' */}
+          <div className="flex flex-wrap gap-4">
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300 uppercase tracking-wider">
+              <Gavel size={14} className="text-[#ca8a04]" /> Advocacy
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300 uppercase tracking-wider">
+              <Users size={14} className="text-[#ca8a04]" /> Welfare
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300 uppercase tracking-wider">
+              <Award size={14} className="text-[#ca8a04]" /> Excellence
+            </div>
+          </div>
+        </motion.div>
+
+        {/* RIGHT: THE IMAGE (Card Style) */}
         <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-[80vw] md:w-[30vw] h-[50vh] md:h-[70vh] bg-[#e0e0e0] overflow-hidden rounded-sm shadow-2xl"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          style={{ y }}
+          className="md:col-span-5 relative"
         >
-          {/* THE IMAGE */}
-          <img
-            src="https://i.imgur.com/lULt9DZ.jpeg"
-            alt="Udemmadu Cornelius"
-            className="w-full h-full object-cover filter grayscale contrast-110 hover:grayscale-0 transition-all duration-1000 ease-out"
-          />
+          {/* DECORATIVE FRAME */}
+          <div className="absolute inset-0 translate-x-4 translate-y-4 border-2 border-[#ca8a04] rounded-lg opacity-50" />
 
-          {/* Overlay Gradient for text readability if needed */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+          <div className="relative h-[500px] w-full bg-gray-800 rounded-lg overflow-hidden shadow-2xl">
+            {/* PLACEHOLDER IMAGE - REPLACE THIS URL */}
+            <img
+              src="https://i.imgur.com/lULt9DZ.jpeg"
+              alt="Udemmadu Cornelius"
+              className="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#0f172a] to-transparent" />
 
-          {/* Decorative border */}
-          <div className="absolute inset-4 border border-white/30 pointer-events-none"></div>
+            <div className="absolute bottom-6 left-6">
+              <p className="text-white font-serif text-2xl">
+                The People's Choice
+              </p>
+              <p className="text-[#ca8a04] text-xs uppercase tracking-widest">
+                COOU Chapter
+              </p>
+            </div>
+          </div>
         </motion.div>
-      </motion.div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 md:left-12 md:translate-x-0 flex items-center gap-3"
-      >
-        <ArrowDown size={16} className="opacity-50 animate-bounce" />
-        <span className="text-[10px] uppercase tracking-widest opacity-50">
-          Scroll
-        </span>
-      </motion.div>
+      </div>
     </section>
   );
 }
 
-// THE BRIEF ----------------------------------------------------
-function TheBrief() {
+// ----------------------------------------------------------------------
+// 3. ABOUT SECTION (High Contrast)
+// ----------------------------------------------------------------------
+function AboutSection() {
   return (
-    <section
-      id="about"
-      className="py-24 md:py-32 px-6 md:px-12 border-b border-[#d4d4d0] relative z-20 bg-[#F4F4F0]"
-    >
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 md:gap-24">
-        <div className="md:w-1/3">
-          <div className="sticky top-32">
-            <h2 className="font-serif text-4xl md:text-5xl mb-4">The Brief</h2>
-            <div className="h-[1px] w-12 bg-[#111] mb-6"></div>
-            <p className="text-xs font-sans tracking-widest uppercase text-[#666]">
-              Statement of Purpose
+    <section id="about" className="py-24 px-6 bg-white text-[#0f172a]">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="order-2 md:order-1">
+          <h2 className="font-serif text-5xl mb-8 leading-tight">
+            "We do not need more politicians. We need{" "}
+            <span className="text-[#ca8a04] italic">Solutionists.</span>"
+          </h2>
+          <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
+            <p>
+              My name is Udemmadu Cornelius Ezechukwu. I am a Law Student at
+              Chukwuemeka Odumegwu Ojukwu University, and I believe in the power
+              of the law to transform lives.
+            </p>
+            <p>
+              Running for Vice President of National LAWSA isn't a career move
+              for me—it's a service mandate. I have spent my years at COOU
+              building foundations, winning debates, and serving students. Now,
+              I want to take that experience to the national stage.
+            </p>
+          </div>
+          <div className="mt-8 pt-8 border-t border-gray-200">
+            <p className="font-bold font-serif text-xl">Cornelius Ezechukwu</p>
+            <p className="text-sm text-gray-500 uppercase tracking-widest">
+              The Candidate
             </p>
           </div>
         </div>
-        <div className="md:w-2/3">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h3 className="text-2xl md:text-4xl font-serif leading-tight mb-10">
-              "Leadership isn't about the noise. It's about the nuance.
-              <span className="text-[#888] italic">
-                {" "}
-                It is the quiet dedication to the welfare of the Nigerian Law
-                Student."
-              </span>
-            </h3>
-            <div className="space-y-8 font-sans text-sm md:text-base text-[#333] leading-relaxed max-w-xl">
-              <p>
-                Hailing from Chukwuemeka Odumegwu Ojukwu University, I have
-                learned that the law is a tool for social engineering...
-              </p>
-              <p>
-                True representation requires a balance of diplomacy and
-                action...
-              </p>
-            </div>
-          </motion.div>
+
+        <div className="order-1 md:order-2 grid grid-cols-2 gap-4">
+          <div className="bg-[#f1f5f9] p-8 rounded-2xl flex flex-col items-center justify-center text-center h-48">
+            <span className="text-4xl font-bold text-[#0f172a] mb-2">3+</span>
+            <span className="text-xs uppercase tracking-widest text-gray-500">
+              Years Service
+            </span>
+          </div>
+          <div className="bg-[#0f172a] p-8 rounded-2xl flex flex-col items-center justify-center text-center h-48 text-white">
+            <span className="text-4xl font-bold text-[#ca8a04] mb-2">5+</span>
+            <span className="text-xs uppercase tracking-widest text-gray-400">
+              Major Awards
+            </span>
+          </div>
+          <div className="bg-[#ca8a04] p-8 rounded-2xl flex flex-col items-center justify-center text-center h-48 col-span-2">
+            <span className="text-2xl font-serif font-bold text-[#0f172a] mb-2">
+              The Valiants
+            </span>
+            <span className="text-xs uppercase tracking-widest text-[#0f172a]/70">
+              Founder & Lead
+            </span>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-// PRECEDENTS (CLEAN LIST VERSION) ------------------------------
-function Precedents({ onItemClick }) {
+// ----------------------------------------------------------------------
+// 4. BENTO GRID ACHIEVEMENTS (The "Cool" Section)
+// ----------------------------------------------------------------------
+function BentoGridAchievements() {
   return (
-    <section
-      id="achievements"
-      className="py-24 md:py-32 px-6 md:px-12 bg-[#EAEAE6] relative z-20"
-    >
+    <section id="track-record" className="py-32 px-6 bg-[#0f172a]">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16 flex flex-col md:flex-row justify-between items-end border-b border-[#ccc] pb-6">
-          <h2 className="font-serif text-4xl md:text-6xl">The Precedents</h2>
-          <p className="mt-4 md:mt-0 text-xs font-sans tracking-widest uppercase text-[#666]">
-            Evidence of Excellence
+        <div className="text-center mb-20">
+          <span className="text-[#ca8a04] font-mono text-xs uppercase tracking-widest border border-[#ca8a04]/30 px-3 py-1 rounded-full">
+            The Precedents
+          </span>
+          <h2 className="text-4xl md:text-6xl font-serif text-white mt-4">
+            Track Record of Excellence
+          </h2>
+        </div>
+
+        {/* THE GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-6 h-auto md:h-[1000px]">
+          {/* ITEM 1: LARGE HERO (Oratory) */}
+          <BentoCard
+            className="md:col-span-2 md:row-span-2"
+            title="Oratory Symposium 3.0 Winner"
+            category="Public Speaking"
+            image="https://i.imgur.com/8LOjS7S.jpeg" // Replace
+          />
+
+          {/* ITEM 2: TALL (Awards) */}
+          <div className="md:col-span-1 md:row-span-2 bg-[#1e293b] rounded-3xl p-8 flex flex-col relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-8 opacity-10">
+              <Award size={100} />
+            </div>
+            <span className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
+              Honors
+            </span>
+            <h3 className="text-3xl font-serif text-white mb-6">
+              Hall of Fame
+            </h3>
+            <ul className="space-y-4 text-gray-300 text-sm flex-1">
+              <li className="border-b border-white/10 pb-2">
+                🏆 Overall Best Student (Awkuzu 2019)
+              </li>
+              <li className="border-b border-white/10 pb-2">
+                ⚡ Most Innovative Law Student (Regional)
+              </li>
+              <li className="border-b border-white/10 pb-2">
+                🌟 Rising Star of Southeast
+              </li>
+              <li className="border-b border-white/10 pb-2">
+                🎖 Best Team Leader (Cooulawsa027)
+              </li>
+            </ul>
+            <div className="mt-6 pt-6 border-t border-white/10">
+              <p className="text-[#ca8a04] text-xs uppercase">
+                Consistent Excellence
+              </p>
+            </div>
+          </div>
+
+          {/* ITEM 3: WIDE (The Valiants) */}
+          <div className="md:col-span-2 md:row-span-1 bg-[#ca8a04] rounded-3xl p-8 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+            <div className="flex-1 z-10">
+              <span className="text-xs font-bold text-[#0f172a]/60 uppercase tracking-widest mb-2 block">
+                Foundations
+              </span>
+              <h3 className="text-3xl font-serif text-[#0f172a] mb-2">
+                Founder of The VALIANTS
+              </h3>
+              <p className="text-[#0f172a]/80 text-sm font-medium max-w-md">
+                A dedicated legal team advocating for students' rights on
+                campus. Bridging the gap between management and student welfare.
+              </p>
+            </div>
+            {/* Circle Image */}
+            <div className="w-32 h-32 rounded-full bg-[#0f172a] border-4 border-white/20 overflow-hidden shrink-0 z-10">
+              <img
+                src="https://i.imgur.com/yU5EGnp.jpeg"
+                className="w-full h-full object-cover"
+                alt="Valiants"
+              />
+            </div>
+            {/* Decorative Background Pattern */}
+            <Gavel
+              className="absolute -right-10 -bottom-10 text-[#0f172a]/10 rotate-12"
+              size={200}
+            />
+          </div>
+
+          {/* ITEM 4: STANDARD (Conferences) */}
+          <BentoCard
+            className="md:col-span-1 md:row-span-1"
+            title="LIFIN 10th Anniversary"
+            category="Conference"
+            image="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=800"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Helper for Grid Cards
+function BentoCard({ className, title, category, image }) {
+  return (
+    <motion.div
+      whileHover={{ scale: 0.98 }}
+      className={`relative rounded-3xl overflow-hidden group cursor-pointer ${className}`}
+    >
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/40 to-transparent opacity-90" />
+      </div>
+
+      {/* Text Content */}
+      <div className="absolute bottom-0 left-0 p-8 z-20">
+        <span className="px-3 py-1 bg-[#ca8a04] text-[#0f172a] text-[10px] font-bold uppercase tracking-widest rounded-full mb-3 inline-block">
+          {category}
+        </span>
+        <h3 className="text-2xl md:text-3xl font-serif text-white leading-tight group-hover:text-[#ca8a04] transition-colors">
+          {title}
+        </h3>
+      </div>
+
+      {/* Hover Arrow */}
+      <div className="absolute top-8 right-8 z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-white/10 p-2 rounded-full backdrop-blur-sm text-white">
+        <ArrowRight size={20} className="-rotate-45" />
+      </div>
+    </motion.div>
+  );
+}
+
+// ----------------------------------------------------------------------
+// 5. VISION SECTION (Clean & Direct)
+// ----------------------------------------------------------------------
+function VisionSection() {
+  return (
+    <section id="vision" className="py-32 px-6 bg-white text-[#0f172a]">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-gray-200 pb-8">
+          <h2 className="text-5xl font-serif">The Vision 2025</h2>
+          <p className="max-w-md text-gray-600 mt-4 md:mt-0">
+            A mandate not of promises, but of actionable plans. My roadmap for
+            the National LAWSA Vice Presidency.
           </p>
         </div>
 
-        {/* Categories */}
-        <CategoryBlock
-          title="Honors & Recognition"
-          data={AWARDS_DATA}
-          onClick={onItemClick}
-        />
-        <CategoryBlock
-          title="Leadership & Impact"
-          data={FOUNDATION_DATA}
-          onClick={onItemClick}
-        />
-        <CategoryBlock
-          title="Engagements"
-          data={CONFERENCE_DATA}
-          onClick={onItemClick}
-        />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <VisionCard
+            icon={<Mic className="text-[#ca8a04]" size={32} />}
+            title="Capacity Beyond Class"
+            desc="Launching the 'National Moot & Mock Trial League' to sharpen advocacy skills before graduation."
+          />
+          <VisionCard
+            icon={<Users className="text-[#ca8a04]" size={32} />}
+            title="Inclusive Welfare"
+            desc="Implementing a 'Student Legal Aid' fund and a direct feedback loop to address victimization."
+          />
+          <VisionCard
+            icon={<Award className="text-[#ca8a04]" size={32} />}
+            title="Academic Renaissance"
+            desc="Digitization of LAWSA libraries nationwide and securing virtual internships with major firms."
+          />
+        </div>
       </div>
     </section>
   );
 }
 
-function CategoryBlock({ title, data, onClick }) {
+function VisionCard({ icon, title, desc }) {
   return (
-    <div className="mb-20">
-      <h3 className="font-sans text-xs tracking-widest uppercase mb-8 opacity-50">
-        {title}
-      </h3>
-      <div className="flex flex-col">
-        {data.map((item, index) => (
-          <AchievementItem
-            key={index}
-            item={item}
-            index={index}
-            onClick={() => onClick(item)}
-          />
-        ))}
+    <div className="bg-[#f8fafc] p-10 rounded-2xl hover:bg-[#0f172a] hover:text-white transition-colors duration-500 group border border-gray-100 hover:border-[#0f172a]">
+      <div className="mb-6 p-4 bg-white rounded-full w-fit shadow-sm group-hover:bg-white/10">
+        {icon}
       </div>
+      <h3 className="text-2xl font-serif font-bold mb-4">{title}</h3>
+      <p className="text-gray-600 leading-relaxed group-hover:text-gray-300">
+        {desc}
+      </p>
     </div>
   );
 }
 
-function AchievementItem({ item, index, onClick }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      onClick={onClick}
-      className="group relative border-b border-[#ccc] py-8 md:py-10 cursor-pointer hover:bg-[#dededb] transition-colors duration-300"
-    >
-      <div className="flex flex-col md:flex-row gap-4 md:gap-12 items-baseline justify-between">
-        <div className="flex flex-col md:flex-row md:gap-12 w-full items-baseline">
-          <span className="text-xs font-mono text-[#888] w-32 shrink-0 uppercase tracking-wider">
-            {item.tag}
-          </span>
-          <h3 className="text-xl md:text-3xl font-serif group-hover:translate-x-2 transition-transform duration-300">
-            {item.title}
-          </h3>
-        </div>
-
-        {/* Subtle "View" Button */}
-        <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span className="text-[10px] uppercase tracking-widest">
-            View File
-          </span>
-          <ArrowRight size={14} />
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-// THE DRAWER (MODAL FOR IMAGES) --------------------------------
-function CaseFileDrawer({ item, onClose }) {
-  return (
-    <AnimatePresence>
-      {item && (
-        <>
-          {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
-          />
-
-          {/* Slide-out Panel */}
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 w-full md:w-[600px] h-full bg-[#F4F4F0] z-[70] overflow-y-auto shadow-2xl"
-          >
-            <div className="p-8 md:p-12 min-h-full flex flex-col">
-              {/* Header */}
-              <div className="flex justify-between items-start mb-12">
-                <div className="text-xs font-mono text-[#888] uppercase tracking-widest border border-[#ccc] px-3 py-1 rounded-full">
-                  Exhibit: {item.tag}
-                </div>
-                <button
-                  onClick={onClose}
-                  className="p-2 hover:bg-gray-200 rounded-full transition-colors"
-                >
-                  <X size={24} />
-                </button>
-              </div>
-
-              {/* Title & Desc */}
-              <h2 className="text-3xl md:text-4xl font-serif mb-6 leading-tight">
-                {item.title}
-              </h2>
-              <p className="font-sans text-[#444] leading-relaxed mb-12 border-l-2 border-[#111] pl-4">
-                {item.description}
-              </p>
-
-              {/* THE GALLERY GRID */}
-              {item.images && item.images.length > 0 ? (
-                <div className="grid grid-cols-1 gap-4">
-                  {item.images.map((img, idx) => (
-                    <div key={idx} className="relative group">
-                      <img
-                        src={img}
-                        alt={`${item.title} evidence ${idx + 1}`}
-                        className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700 rounded-sm"
-                      />
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="h-40 flex flex-col items-center justify-center border border-dashed border-gray-400 rounded text-gray-400 bg-gray-50">
-                  <Camera size={24} className="mb-2 opacity-50" />
-                  <span className="text-xs uppercase tracking-widest">
-                    No Visual Evidence on File
-                  </span>
-                </div>
-              )}
-            </div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
-  );
-}
-
-// VISION SECTION -----------------------------------------------
-function VisionSection() {
-  return (
-    <section
-      id="vision"
-      className="py-24 md:py-32 px-6 md:px-12 bg-[#111] text-[#F4F4F0] relative z-20"
-    >
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-20 flex flex-col md:flex-row justify-between items-end border-b border-[#333] pb-8">
-          <div>
-            <h2 className="font-serif text-4xl md:text-6xl mb-2">The Vision</h2>
-            <p className="text-[#888] font-sans text-sm max-w-md leading-relaxed">
-              "A mandate not of promises, but of actionable plans."
-            </p>
-          </div>
-          <div className="mt-8 md:mt-0">
-            <p className="text-xs font-sans tracking-widest uppercase text-[#666]">
-              Agenda 2025
-            </p>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {VISION_DATA.map((item, index) => (
-            <VisionCard key={index} item={item} index={index} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function VisionCard({ item, index }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.2 }}
-      className="flex flex-col justify-between h-full border-t border-[#333] pt-8 hover:border-[#F4F4F0] transition-colors duration-500 group"
-    >
-      <div>
-        <span className="text-xs font-mono text-[#555] mb-6 block">
-          0{index + 1}
-        </span>
-        <h3 className="text-2xl font-serif mb-4 group-hover:translate-x-2 transition-transform duration-300">
-          {item.title}
-        </h3>
-        <p className="text-[#999] text-sm leading-relaxed group-hover:text-[#ccc] transition-colors duration-300">
-          {item.description}
-        </p>
-      </div>
-    </motion.div>
-  );
-}
-
-// FOOTER -------------------------------------------------------
+// ----------------------------------------------------------------------
+// 6. FOOTER
+// ----------------------------------------------------------------------
 function Footer() {
   return (
-    <footer className="bg-[#111] text-[#F4F4F0] px-6 md:px-12 py-12 border-t border-[#222] relative z-20">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+    <footer
+      id="contact"
+      className="bg-[#020617] text-gray-400 py-20 px-6 border-t border-white/10"
+    >
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="text-center md:text-left">
-          <h4 className="font-serif text-2xl">Udemmadu Cornelius Ezechukwu</h4>
-          <p className="text-xs text-[#666] uppercase tracking-widest mt-2">
+          <h2 className="text-2xl text-white font-serif font-bold mb-2">
+            Udemmadu Cornelius Ezechukwu
+          </h2>
+          <p className="text-xs uppercase tracking-widest text-[#ca8a04]">
             Vice President Aspirant • National LAWSA
           </p>
         </div>
-        <div className="flex gap-8">
-          <SocialLink href="#" icon={<Twitter size={20} />} />
-          <SocialLink href="#" icon={<Linkedin size={20} />} />
-          <SocialLink href="#" icon={<Instagram size={20} />} />
-          <SocialLink
-            href="mailto:example@email.com"
-            icon={<Mail size={20} />}
-          />
+
+        <div className="flex gap-6">
+          <SocialBtn icon={<Twitter size={18} />} />
+          <SocialBtn icon={<Linkedin size={18} />} />
+          <SocialBtn icon={<Instagram size={18} />} />
+          <SocialBtn icon={<Mail size={18} />} />
         </div>
-        <div className="text-[10px] text-[#444] uppercase tracking-widest">
-          © 2025 U.C.E. Campaign
-        </div>
+
+        <p className="text-[10px] uppercase tracking-widest opacity-50">
+          © 2025 U.C.E. Campaign Organization
+        </p>
       </div>
     </footer>
   );
 }
-function SocialLink({ href, icon }) {
+
+function SocialBtn({ icon }) {
   return (
     <a
-      href={href}
-      className="text-[#888] hover:text-white transition-colors duration-300 hover:scale-110 transform"
+      href="#"
+      className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#ca8a04] hover:text-[#0f172a] transition-all"
     >
       {icon}
     </a>
   );
 }
-
-// DATA ARRAYS (NOW WITH MULTIPLE IMAGES SUPPORT) ---------------
-// Change 'images' to contain an ARRAY of strings ["url1", "url2"]
-
-const AWARDS_DATA = [
-  {
-    tag: "Symposium",
-    title: "Winner, Oratory Symposium 3.0",
-    description:
-      "Champion of the Southeast Edition. Demonstrated exceptional argumentative rigor and public speaking prowess among top regional contenders.",
-    images: [
-      "https://i.imgur.com/8LOjS7S.jpeg",
-      "https://i.imgur.com/YShbGw9.jpeg", // Add more images here
-    ],
-  },
-  {
-    tag: "Academic",
-    title: "Overall Best Student",
-    description:
-      "Awarded in Awkuzu (Hometown), 2019. Recognized for consistent academic excellence.",
-    images: [], // Empty array if no images
-  },
-  {
-    tag: "Innovation",
-    title: "Most Innovative Law Student",
-    description:
-      "A triple-crown recognition: Awarded 'Most Innovative' at the Faculty level, Chapter level, and Regional level.",
-    images: ["https://i.imgur.com/YShbGw9.jpeg"],
-  },
-];
-
-const FOUNDATION_DATA = [
-  {
-    tag: "Founder",
-    title: "The VALIANTS",
-    description:
-      "Founder of a dedicated legal team advocating for students' rights on campus.",
-    images: ["https://i.imgur.com/yU5EGnp.jpeg"],
-  },
-  {
-    tag: "Leadership",
-    title: "Best Team Leader",
-    description:
-      "Cooulawsa027. Recognized for ability to mobilize teams and manage conflicts.",
-    images: [],
-  },
-];
-
-const CONFERENCE_DATA = [
-  {
-    tag: "Conference",
-    title: "LIFIN 10th Anniversary",
-    description:
-      "Active participant and contributor to the Legal Ideas Forum International.",
-    images: [
-      "https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1200&auto=format&fit=crop",
-    ],
-  },
-];
-
-const VISION_DATA = [
-  {
-    title: "Academic Renaissance",
-    description:
-      "Advocating for the digitization of LAWSA libraries nationwide and securing partnerships with major law firms.",
-  },
-  {
-    title: "Inclusive Welfare",
-    description:
-      "Implementing a 'Student Legal Aid' fund and a direct feedback loop to address victimization.",
-  },
-  {
-    title: "Capacity Beyond Class",
-    description:
-      "Launching the 'National Moot & Mock Trial League' to sharpen advocacy skills.",
-  },
-];
