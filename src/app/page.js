@@ -12,6 +12,14 @@ import {
   Gavel,
   Users,
   Mic,
+  Handshake,
+  Layers,
+  Globe2,
+  BookOpen,
+  Link2,
+  Cpu,
+  ShieldCheck,
+  Eye,
 } from "lucide-react";
 
 // --- THE NEW VIBE: PRESIDENTIAL MODERN ---
@@ -127,20 +135,21 @@ function HeroSection() {
           </h1>
 
           <p className="text-lg text-gray-300 max-w-lg leading-relaxed mb-10 border-l-2 border-gray-700 pl-6">
-            Aspirant for <strong>Vice President, National LAWSA</strong>. <br />
+            Aspirant for{" "}
+            <strong>Vice President (External), National LAWSA</strong>. <br />
             Bridging the gap between promise and performance for the Nigerian
             Law Student.
           </p>
 
           <div className="flex flex-wrap gap-4">
             <div className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300 uppercase tracking-wider">
-              <Gavel size={14} className="text-[#ca8a04]" /> Advocacy
+              <Gavel size={14} className="text-[#ca8a04]" /> Law
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300 uppercase tracking-wider">
-              <Users size={14} className="text-[#ca8a04]" /> Welfare
+              <Users size={14} className="text-[#ca8a04]" /> Leadership
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300 uppercase tracking-wider">
-              <Award size={14} className="text-[#ca8a04]" /> Excellence
+              <Award size={14} className="text-[#ca8a04]" /> Innovation
             </div>
           </div>
         </motion.div>
@@ -159,7 +168,7 @@ function HeroSection() {
           <div className="relative h-[500px] w-full bg-gray-800 rounded-lg overflow-hidden shadow-2xl">
             {/* PLACEHOLDER IMAGE - REPLACE THIS URL */}
             <img
-              src="https://i.imgur.com/lULt9DZ.jpeg"
+              src="https://i.imgur.com/81wjAPS.jpeg"
               alt="Udemmadu Cornelius"
               className="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700"
             />
@@ -200,9 +209,9 @@ function AboutSection() {
             </p>
             <p>
               Running for Vice President of National LAWSA isn't a career move
-              for me—it's a service mandate. I have spent my years at COOU
-              building foundations, winning debates, and serving students. Now,
-              I want to take that experience to the national stage.
+              for me, it's a service mandate. I have spent my years building
+              foundations, winning debates, and serving students. Now, I want to
+              take that experience to the national stage.
             </p>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-200">
@@ -215,7 +224,7 @@ function AboutSection() {
 
         <div className="order-1 md:order-2 grid grid-cols-2 gap-4">
           <div className="bg-[#f1f5f9] p-8 rounded-2xl flex flex-col items-center justify-center text-center h-48">
-            <span className="text-4xl font-bold text-[#0f172a] mb-2">3+</span>
+            <span className="text-4xl font-bold text-[#0f172a] mb-2">4+</span>
             <span className="text-xs uppercase tracking-widest text-gray-500">
               Years Service
             </span>
@@ -241,137 +250,190 @@ function AboutSection() {
 }
 
 // ----------------------------------------------------------------------
-// 4. BENTO GRID ACHIEVEMENTS (The "Cool" Section)
+// 4. TRACK RECORD (Mobile-First Engineering)
 // ----------------------------------------------------------------------
 function BentoGridAchievements() {
   return (
-    <section id="track-record" className="py-32 px-6 bg-[#0f172a]">
+    <section id="track-record" className="py-20 md:py-32 px-6 bg-[#0f172a]">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <span className="text-[#ca8a04] font-mono text-xs uppercase tracking-widest border border-[#ca8a04]/30 px-3 py-1 rounded-full">
+        {/* Section Header */}
+        <div className="text-center mb-16 md:mb-24">
+          <span className="text-[#ca8a04] font-mono text-xs uppercase tracking-widest border border-[#ca8a04]/30 px-4 py-2 rounded-full">
             The Precedents
           </span>
-          <h2 className="text-4xl md:text-6xl font-serif text-white mt-4">
-            Track Record of Excellence
+          <h2 className="text-4xl md:text-6xl font-serif text-white mt-6">
+            Evidence of Impact
           </h2>
         </div>
 
-        {/* THE GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-6 h-auto md:h-[1000px]">
-          {/* ITEM 1: LARGE HERO (Oratory) */}
-          <BentoCard
-            className="md:col-span-2 md:row-span-2"
-            title="Oratory Symposium 3.0 Winner"
-            category="Public Speaking"
-            image="https://i.imgur.com/8LOjS7S.jpeg" // Replace
-          />
-
-          {/* ITEM 2: TALL (Awards) */}
-          <div className="md:col-span-1 md:row-span-2 bg-[#1e293b] rounded-3xl p-8 flex flex-col relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-8 opacity-10">
-              <Award size={100} />
-            </div>
-            <span className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
-              Honors
-            </span>
-            <h3 className="text-3xl font-serif text-white mb-6">
-              Hall of Fame
-            </h3>
-            <ul className="space-y-4 text-gray-300 text-sm flex-1">
-              <li className="border-b border-white/10 pb-2">
-                🏆 Overall Best Student (Awkuzu 2019)
-              </li>
-              <li className="border-b border-white/10 pb-2">
-                ⚡ Most Innovative Law Student (Regional)
-              </li>
-              <li className="border-b border-white/10 pb-2">
-                🌟 Rising Star of Southeast
-              </li>
-              <li className="border-b border-white/10 pb-2">
-                🎖 Best Team Leader (Cooulawsa027)
-              </li>
-            </ul>
-            <div className="mt-6 pt-6 border-t border-white/10">
-              <p className="text-[#ca8a04] text-xs uppercase">
-                Consistent Excellence
-              </p>
-            </div>
-          </div>
-
-          {/* ITEM 3: WIDE (The Valiants) */}
-          <div className="md:col-span-2 md:row-span-1 bg-[#ca8a04] rounded-3xl p-8 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
-            <div className="flex-1 z-10">
-              <span className="text-xs font-bold text-[#0f172a]/60 uppercase tracking-widest mb-2 block">
-                Foundations
-              </span>
-              <h3 className="text-3xl font-serif text-[#0f172a] mb-2">
-                Founder of The VALIANTS
-              </h3>
-              <p className="text-[#0f172a]/80 text-sm font-medium max-w-md">
-                A dedicated legal team advocating for students' rights on
-                campus. Bridging the gap between management and student welfare.
-              </p>
-            </div>
-            {/* Circle Image */}
-            <div className="w-32 h-32 rounded-full bg-[#0f172a] border-4 border-white/20 overflow-hidden shrink-0 z-10">
-              <img
-                src="https://i.imgur.com/yU5EGnp.jpeg"
-                className="w-full h-full object-cover"
-                alt="Valiants"
-              />
-            </div>
-            {/* Decorative Background Pattern */}
-            <Gavel
-              className="absolute -right-10 -bottom-10 text-[#0f172a]/10 rotate-12"
-              size={200}
+        {/* THE GRID CONTAINER */}
+        {/* On Mobile: Flex-col (Vertical Stack). On Desktop: Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto">
+          {/* 1. ORATORY (Hero Image Card) - Spans full width on mobile, 7 cols on desktop */}
+          <div className="md:col-span-7 relative h-64 md:h-96 rounded-3xl overflow-hidden group">
+            <img
+              src="https://i.imgur.com/8LOjS7S.jpeg"
+              alt="Oratory Winner"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-transparent to-transparent opacity-90"></div>
+            <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8">
+              <span className="bg-[#ca8a04] text-[#0f172a] text-[10px] font-bold uppercase px-3 py-1 rounded-full">
+                Winner
+              </span>
+              <h3 className="text-2xl md:text-4xl font-serif text-white mt-2">
+                Oratory Symposium 3.0
+              </h3>
+              <p className="text-gray-300 text-xs md:text-sm mt-1">
+                Southeast Edition Champion
+              </p>
+            </div>
           </div>
 
-          {/* ITEM 4: STANDARD (Conferences) */}
-          <BentoCard
-            className="md:col-span-1 md:row-span-1"
-            title="LIFIN 10th Anniversary"
-            category="Conference"
-            image="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=800"
-          />
+          {/* 2. THE VALIANTS (Foundation) - Spans 5 cols */}
+          <div className="md:col-span-5 bg-[#ca8a04] rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden">
+            <div className="z-10">
+              <div className="flex items-center gap-2 mb-4">
+                <Gavel className="text-[#0f172a]" size={20} />
+                <span className="text-[#0f172a] font-bold uppercase tracking-widest text-xs">
+                  Foundation
+                </span>
+              </div>
+              <h3 className="text-3xl font-serif text-[#0f172a] leading-none mb-4">
+                The VALIANTS
+              </h3>
+              <p className="text-[#0f172a]/80 text-sm font-medium leading-relaxed">
+                Founder of a dedicated legal team advocating for students’
+                rights on campus.
+              </p>
+            </div>
+            <div className="mt-6 flex items-center gap-4 z-10">
+              <div className="w-12 h-12 rounded-full bg-[#0f172a] overflow-hidden border-2 border-white/20">
+                <img
+                  src="https://i.imgur.com/yU5EGnp.jpeg"
+                  className="w-full h-full object-cover"
+                  alt="Valiants"
+                />
+              </div>
+              <span className="text-xs font-bold text-[#0f172a] uppercase">
+                Legal Advocacy Team
+              </span>
+            </div>
+            {/* Background Decoration */}
+            <Users className="absolute -bottom-4 -right-4 text-[#0f172a]/10 w-32 h-32 rotate-12" />
+          </div>
+
+          {/* 3. AWARDS LIST (Scrollable / Visible) - Spans 4 cols */}
+          <div className="md:col-span-4 bg-[#1e293b] rounded-3xl p-8 border border-white/5">
+            <div className="flex items-center gap-3 mb-6">
+              <Award className="text-[#ca8a04]" size={24} />
+              <h3 className="text-xl font-serif text-white">Hall of Fame</h3>
+            </div>
+            <ul className="space-y-4">
+              <AwardItem
+                title="Overall Best Student"
+                subtitle="Awkuzu Hometown (2019)"
+              />
+              <AwardItem
+                title="Most Innovative Student"
+                subtitle="COOU Law Faculty"
+              />
+              <AwardItem
+                title="Most Innovative Student"
+                subtitle="Southeast Regional"
+              />
+              <AwardItem title="Rising Star" subtitle="Southeast Zone" />
+              <AwardItem title="Best Team Leader" subtitle="Cooulawsa027" />
+            </ul>
+          </div>
+
+          {/* 4. BRIDGING THE BAR (Special Feature) - Spans 8 cols */}
+          <div className="md:col-span-8 bg-white rounded-3xl p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start relative overflow-hidden">
+            <div className="flex-1 z-10">
+              <span className="text-[#ca8a04] font-bold uppercase tracking-widest text-xs mb-2 block">
+                Major Project
+              </span>
+              <h3 className="text-3xl md:text-4xl font-serif text-[#0f172a] mb-4">
+                Bridging the Bar
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                Chief Host of a 7-day legal education initiative. Collaborated
+                with PROs from UNIZIK, UNN, and ESUT to deliver trivia, hot
+                seats, and case law sessions.
+              </p>
+              <div className="bg-[#f1f5f9] p-4 rounded-xl border-l-4 border-[#ca8a04]">
+                <p className="text-xs font-bold text-[#0f172a] uppercase mb-1">
+                  The Impact
+                </p>
+                <p className="text-gray-600 text-xs">
+                  Concluded with a massive webinar on "Networking
+                  Opportunities," creating a vibrant platform for professional
+                  growth.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Side: Event List within the Event Card */}
+            <div className="w-full md:w-64 bg-[#f8fafc] rounded-2xl p-6 border border-gray-200 z-10">
+              <h4 className="text-[#0f172a] font-bold text-sm mb-4 uppercase">
+                Other Events
+              </h4>
+              <ul className="space-y-3">
+                <li className="text-xs text-gray-600 flex gap-2">
+                  <span className="text-[#ca8a04]">•</span> Library Orientation
+                </li>
+                <li className="text-xs text-gray-600 flex gap-2">
+                  <span className="text-[#ca8a04]">•</span> Career Development
+                  (School Visitations)
+                </li>
+              </ul>
+            </div>
+
+            {/* Background Texture */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#ca8a04]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+          </div>
+
+          {/* 5. CONFERENCES (Simple List) - Spans full width or partial */}
+          <div className="md:col-span-12 bg-[#1e293b] rounded-3xl p-8 md:p-10 flex flex-col md:flex-row justify-between items-center gap-6 border border-white/5">
+            <div className="text-center md:text-left">
+              <h3 className="text-2xl font-serif text-white mb-2">
+                Conferences & Engagements
+              </h3>
+              <p className="text-gray-400 text-sm">
+                Representation across the legal landscape
+              </p>
+            </div>
+
+            <div className="flex flex-wrap justify-center md:justify-end gap-3">
+              <ConferenceTag text="LIFIN 10th Anniversary" />
+              <ConferenceTag text="Southeast LAWSAN Convention" />
+              <ConferenceTag text="Intl. Interdisciplinary Conf. 2024" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-// Helper for Grid Cards
-function BentoCard({ className, title, category, image }) {
+// --- SUB-COMPONENTS FOR CLEAN CODE ---
+
+function AwardItem({ title, subtitle }) {
   return (
-    <motion.div
-      whileHover={{ scale: 0.98 }}
-      className={`relative rounded-3xl overflow-hidden group cursor-pointer ${className}`}
-    >
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/40 to-transparent opacity-90" />
-      </div>
+    <li className="flex flex-col pb-3 border-b border-white/5 last:border-0">
+      <span className="text-gray-200 font-medium text-sm">{title}</span>
+      <span className="text-gray-500 text-xs uppercase tracking-wider">
+        {subtitle}
+      </span>
+    </li>
+  );
+}
 
-      {/* Text Content */}
-      <div className="absolute bottom-0 left-0 p-8 z-20">
-        <span className="px-3 py-1 bg-[#ca8a04] text-[#0f172a] text-[10px] font-bold uppercase tracking-widest rounded-full mb-3 inline-block">
-          {category}
-        </span>
-        <h3 className="text-2xl md:text-3xl font-serif text-white leading-tight group-hover:text-[#ca8a04] transition-colors">
-          {title}
-        </h3>
-      </div>
-
-      {/* Hover Arrow */}
-      <div className="absolute top-8 right-8 z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-white/10 p-2 rounded-full backdrop-blur-sm text-white">
-        <ArrowRight size={20} className="-rotate-45" />
-      </div>
-    </motion.div>
+function ConferenceTag({ text }) {
+  return (
+    <span className="px-4 py-2 rounded-full bg-[#0f172a] border border-[#ca8a04]/30 text-gray-300 text-xs font-medium hover:border-[#ca8a04] transition-colors cursor-default">
+      {text}
+    </span>
   );
 }
 
@@ -379,33 +441,64 @@ function BentoCard({ className, title, category, image }) {
 // 5. VISION SECTION (Clean & Direct)
 // ----------------------------------------------------------------------
 function VisionSection() {
+  const visions = [
+    {
+      icon: <Handshake className="text-[#ca8a04]" size={32} />,
+      title: "Strong National Partnerships",
+      desc: "Unlock internships, mentorships, scholarships and career opportunities for LAWSANites nationwide.",
+    },
+    {
+      icon: <Layers className="text-[#ca8a04]" size={32} />,
+      title: "Bridging the Bar 2.0 (National Edition)",
+      desc: "A bigger, better, and nationwide mentorship system connecting top lawyers with students.",
+    },
+    {
+      icon: <Globe2 className="text-[#ca8a04]" size={32} />,
+      title: "International Exposure for LAWSAN",
+      desc: "Open access to AU, UN, and global youth legal platforms for national representation.",
+    },
+    {
+      icon: <BookOpen className="text-[#ca8a04]" size={32} />,
+      title: "Legal Education Support Program",
+      desc: "Nationwide webinars, moot court training, and academic support for every law student.",
+    },
+    {
+      icon: <Link2 className="text-[#ca8a04]" size={32} />,
+      title: "Campus–National Linkage Reform",
+      desc: "Equal updates, equal opportunities, ensuring no faculty or campus is left behind.",
+    },
+    {
+      icon: <Cpu className="text-[#ca8a04]" size={32} />,
+      title: "Digital Visibility Upgrade",
+      desc: "Modern, active, and fast external communication delivering real-time opportunities.",
+    },
+    {
+      icon: <ShieldCheck className="text-[#ca8a04]" size={32} />,
+      title: "The Student Support Agency (TSA)",
+      desc: "A national support system providing recommendations, guidance, and welfare access.",
+    },
+    {
+      icon: <Eye className="text-[#ca8a04]" size={32} />,
+      title: "Transparent External Engagement",
+      desc: "Clear, inclusive, and accountable national external operations.",
+    },
+  ];
+
   return (
     <section id="vision" className="py-32 px-6 bg-white text-[#0f172a]">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-gray-200 pb-8">
-          <h2 className="text-5xl font-serif">The Vision 2025</h2>
+          <h2 className="text-5xl font-serif">The Vision 2026</h2>
           <p className="max-w-md text-gray-600 mt-4 md:mt-0">
-            A mandate not of promises, but of actionable plans. My roadmap for
+            A mandate not of promises, but of actionable plans — my roadmap for
             the National LAWSA Vice Presidency.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <VisionCard
-            icon={<Mic className="text-[#ca8a04]" size={32} />}
-            title="Capacity Beyond Class"
-            desc="Launching the 'National Moot & Mock Trial League' to sharpen advocacy skills before graduation."
-          />
-          <VisionCard
-            icon={<Users className="text-[#ca8a04]" size={32} />}
-            title="Inclusive Welfare"
-            desc="Implementing a 'Student Legal Aid' fund and a direct feedback loop to address victimization."
-          />
-          <VisionCard
-            icon={<Award className="text-[#ca8a04]" size={32} />}
-            title="Academic Renaissance"
-            desc="Digitization of LAWSA libraries nationwide and securing virtual internships with major firms."
-          />
+          {visions.map((v, i) => (
+            <VisionCard key={i} icon={v.icon} title={v.title} desc={v.desc} />
+          ))}
         </div>
       </div>
     </section>
@@ -441,7 +534,7 @@ function Footer() {
             Udemmadu Cornelius Ezechukwu
           </h2>
           <p className="text-xs uppercase tracking-widest text-[#ca8a04]">
-            Vice President Aspirant • National LAWSA
+            Vice President (External) Aspirant • National LAWSA
           </p>
         </div>
 
@@ -453,7 +546,7 @@ function Footer() {
         </div>
 
         <p className="text-[10px] uppercase tracking-widest opacity-50">
-          © 2025 U.C.E. Campaign Organization
+          © 2025 U.C.E. Campaign
         </p>
       </div>
     </footer>
