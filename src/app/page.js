@@ -81,7 +81,7 @@ function NavBar() {
         </a>
       </div>
       <a
-        href="#contact"
+        href="https://chat.whatsapp.com/F0BGbIACZtr4T1cfjAkuaW"
         className="px-5 py-2 bg-[#ca8a04] text-[#0f172a] text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors rounded-sm"
       >
         Join The Movement
@@ -523,12 +523,36 @@ function VisionCard({ icon, title, desc }) {
 // 6. FOOTER
 // ----------------------------------------------------------------------
 function Footer() {
+  const socialLinks = [
+    {
+      href: "#", // X / Twitter
+      label: "X (formerly Twitter) — konelius1",
+      icon: <Twitter size={18} />,
+    },
+    {
+      href: "https://www.linkedin.com/in/konelius-udemmadu-27839838a",
+      label: "LinkedIn — Konelius Udemmadu",
+      icon: <Linkedin size={18} />,
+    },
+    {
+      href: "https://www.instagram.com/konelius1",
+      label: "Instagram — @konelius1",
+      icon: <Instagram size={18} />,
+    },
+    {
+      href: "mailto:corneliusezechukwu@gmail.com",
+      label: "Email — corneliusezechukwu@gmail.com",
+      icon: <Mail size={18} />,
+    },
+  ];
+
   return (
     <footer
       id="contact"
       className="bg-[#020617] text-gray-400 py-20 px-6 border-t border-white/10"
     >
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+        {/* Identity */}
         <div className="text-center md:text-left">
           <h2 className="text-2xl text-white font-serif font-bold mb-2">
             Udemmadu Cornelius Ezechukwu
@@ -538,13 +562,19 @@ function Footer() {
           </p>
         </div>
 
-        <div className="flex gap-6">
-          <SocialBtn icon={<Twitter size={18} />} />
-          <SocialBtn icon={<Linkedin size={18} />} />
-          <SocialBtn icon={<Instagram size={18} />} />
-          <SocialBtn icon={<Mail size={18} />} />
-        </div>
+        {/* Social buttons */}
+        <nav aria-label="Social links" className="flex gap-4">
+          {socialLinks.map((s) => (
+            <SocialBtn
+              key={s.href}
+              href={s.href}
+              label={s.label}
+              icon={s.icon}
+            />
+          ))}
+        </nav>
 
+        {/* Copyright */}
         <p className="text-[10px] uppercase tracking-widest opacity-50">
           © 2025 U.C.E. Campaign
         </p>
@@ -553,13 +583,21 @@ function Footer() {
   );
 }
 
-function SocialBtn({ icon }) {
+function SocialBtn({ href = "#", label, icon }) {
+  const isMailTo = href?.startsWith?.("mailto:");
+
   return (
     <a
-      href="#"
-      className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#ca8a04] hover:text-[#0f172a] transition-all"
+      href={href}
+      title={label}
+      aria-label={label}
+      target={isMailTo ? undefined : "_blank"}
+      rel={isMailTo ? undefined : "noopener noreferrer"}
+      className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#ca8a04] hover:text-[#0f172a] transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ca8a04]"
     >
       {icon}
+      {/* visible to screen readers only (keeps markup accessible) */}
+      <span className="sr-only">{label}</span>
     </a>
   );
 }
