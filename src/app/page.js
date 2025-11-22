@@ -22,9 +22,6 @@ import {
   Eye,
 } from "lucide-react";
 
-// --- THE NEW VIBE: PRESIDENTIAL MODERN ---
-// Colors: Deep Navy, Paper Cream, Gold Accents
-
 export default function Home() {
   const [selectedItem, setSelectedItem] = useState(null);
   useEffect(() => {
@@ -57,9 +54,6 @@ export default function Home() {
   );
 }
 
-// ----------------------------------------------------------------------
-// 1. NAVBAR (Glassmorphism)
-// ----------------------------------------------------------------------
 function NavBar() {
   return (
     <nav className="fixed top-0 left-0 w-full px-6 py-5 z-50 flex justify-between items-center backdrop-blur-md bg-[#0f172a]/70 border-b border-white/10">
@@ -90,9 +84,6 @@ function NavBar() {
   );
 }
 
-// ----------------------------------------------------------------------
-// 2. HERO SECTION (Bold, Image-Centric, High Energy)
-// ----------------------------------------------------------------------
 function HeroSection() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -106,12 +97,10 @@ function HeroSection() {
       ref={ref}
       className="relative h-screen w-full flex items-center justify-center overflow-hidden pt-20"
     >
-      {/* BACKGROUND GRADIENT BLOBS */}
       <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-blue-900/30 rounded-full blur-[120px]" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-[#ca8a04]/10 rounded-full blur-[120px]" />
 
       <div className="relative z-10 max-w-7xl w-full px-6 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-        {/* LEFT: TEXT */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -154,7 +143,6 @@ function HeroSection() {
           </div>
         </motion.div>
 
-        {/* RIGHT: THE IMAGE (Card Style) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -162,11 +150,9 @@ function HeroSection() {
           style={{ y }}
           className="md:col-span-5 relative"
         >
-          {/* DECORATIVE FRAME */}
           <div className="absolute inset-0 translate-x-4 translate-y-4 border-2 border-[#ca8a04] rounded-lg opacity-50" />
 
           <div className="relative h-[500px] w-full bg-gray-800 rounded-lg overflow-hidden shadow-2xl">
-            {/* PLACEHOLDER IMAGE - REPLACE THIS URL */}
             <img
               src="https://i.imgur.com/81wjAPS.jpeg"
               alt="Udemmadu Cornelius"
@@ -189,9 +175,6 @@ function HeroSection() {
   );
 }
 
-// ----------------------------------------------------------------------
-// 3. ABOUT SECTION (High Contrast)
-// ----------------------------------------------------------------------
 function AboutSection() {
   return (
     <section id="about" className="py-24 px-6 bg-white text-[#0f172a]">
@@ -249,14 +232,10 @@ function AboutSection() {
   );
 }
 
-// ----------------------------------------------------------------------
-// 4. TRACK RECORD (Mobile-First Engineering)
-// ----------------------------------------------------------------------
 function BentoGridAchievements() {
   return (
     <section id="track-record" className="py-20 md:py-32 px-6 bg-[#0f172a]">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
         <div className="text-center mb-16 md:mb-24">
           <span className="text-[#ca8a04] font-mono text-xs uppercase tracking-widest border border-[#ca8a04]/30 px-4 py-2 rounded-full">
             The Precedents
@@ -266,10 +245,7 @@ function BentoGridAchievements() {
           </h2>
         </div>
 
-        {/* THE GRID CONTAINER */}
-        {/* On Mobile: Flex-col (Vertical Stack). On Desktop: Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto">
-          {/* 1. ORATORY (Hero Image Card) - Spans full width on mobile, 7 cols on desktop */}
           <div className="md:col-span-7 relative h-64 md:h-96 rounded-3xl overflow-hidden group">
             <img
               src="https://i.imgur.com/8LOjS7S.jpeg"
@@ -290,7 +266,6 @@ function BentoGridAchievements() {
             </div>
           </div>
 
-          {/* 2. THE VALIANTS (Foundation) - Spans 5 cols */}
           <div className="md:col-span-5 bg-[#ca8a04] rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden">
             <div className="z-10">
               <div className="flex items-center gap-2 mb-4">
@@ -303,7 +278,7 @@ function BentoGridAchievements() {
                 The VALIANTS
               </h3>
               <p className="text-[#0f172a]/80 text-sm font-medium leading-relaxed">
-                Founder of a dedicated legal team advocating for students’
+                Founder of a dedicated legal team advocating for students'
                 rights on campus.
               </p>
             </div>
@@ -319,11 +294,9 @@ function BentoGridAchievements() {
                 Legal Advocacy Team
               </span>
             </div>
-            {/* Background Decoration */}
             <Users className="absolute -bottom-4 -right-4 text-[#0f172a]/10 w-32 h-32 rotate-12" />
           </div>
 
-          {/* 3. AWARDS LIST (Scrollable / Visible) - Spans 4 cols */}
           <div className="md:col-span-4 bg-[#1e293b] rounded-3xl p-8 border border-white/5">
             <div className="flex items-center gap-3 mb-6">
               <Award className="text-[#ca8a04]" size={24} />
@@ -340,14 +313,13 @@ function BentoGridAchievements() {
               />
               <AwardItem
                 title="Most Innovative Student"
-                subtitle="Southeast Regional"
+                subtitle="Southeast Zone"
               />
               <AwardItem title="Rising Star" subtitle="Southeast Zone" />
               <AwardItem title="Best Team Leader" subtitle="Cooulawsa027" />
             </ul>
           </div>
 
-          {/* 4. BRIDGING THE BAR (Special Feature) - Spans 8 cols */}
           <div className="md:col-span-8 bg-white rounded-3xl p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start relative overflow-hidden">
             <div className="flex-1 z-10">
               <span className="text-[#ca8a04] font-bold uppercase tracking-widest text-xs mb-2 block">
@@ -373,7 +345,6 @@ function BentoGridAchievements() {
               </div>
             </div>
 
-            {/* Right Side: Event List within the Event Card */}
             <div className="w-full md:w-64 bg-[#f8fafc] rounded-2xl p-6 border border-gray-200 z-10">
               <h4 className="text-[#0f172a] font-bold text-sm mb-4 uppercase">
                 Other Events
@@ -389,11 +360,11 @@ function BentoGridAchievements() {
               </ul>
             </div>
 
-            {/* Background Texture */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#ca8a04]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#ca8a04]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
+              {" "}
+            </div>
           </div>
 
-          {/* 5. CONFERENCES (Simple List) - Spans full width or partial */}
           <div className="md:col-span-12 bg-[#1e293b] rounded-3xl p-8 md:p-10 flex flex-col md:flex-row justify-between items-center gap-6 border border-white/5">
             <div className="text-center md:text-left">
               <h3 className="text-2xl font-serif text-white mb-2">
@@ -416,8 +387,6 @@ function BentoGridAchievements() {
   );
 }
 
-// --- SUB-COMPONENTS FOR CLEAN CODE ---
-
 function AwardItem({ title, subtitle }) {
   return (
     <li className="flex flex-col pb-3 border-b border-white/5 last:border-0">
@@ -437,9 +406,6 @@ function ConferenceTag({ text }) {
   );
 }
 
-// ----------------------------------------------------------------------
-// 5. VISION SECTION (Clean & Direct)
-// ----------------------------------------------------------------------
 function VisionSection() {
   const visions = [
     {
@@ -490,7 +456,7 @@ function VisionSection() {
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-gray-200 pb-8">
           <h2 className="text-5xl font-serif">The Vision 2026</h2>
           <p className="max-w-md text-gray-600 mt-4 md:mt-0">
-            A mandate not of promises, but of actionable plans — my roadmap for
+            A mandate not of promises, but of actionable plans. My roadmap for
             the National LAWSA Vice Presidency.
           </p>
         </div>
@@ -519,13 +485,10 @@ function VisionCard({ icon, title, desc }) {
   );
 }
 
-// ----------------------------------------------------------------------
-// 6. FOOTER
-// ----------------------------------------------------------------------
 function Footer() {
   const socialLinks = [
     {
-      href: "#", // X / Twitter
+      href: "#",
       label: "X (formerly Twitter) — konelius1",
       icon: <Twitter size={18} />,
     },
@@ -552,7 +515,6 @@ function Footer() {
       className="bg-[#020617] text-gray-400 py-20 px-6 border-t border-white/10"
     >
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-        {/* Identity */}
         <div className="text-center md:text-left">
           <h2 className="text-2xl text-white font-serif font-bold mb-2">
             Udemmadu Cornelius Ezechukwu
@@ -562,7 +524,6 @@ function Footer() {
           </p>
         </div>
 
-        {/* Social buttons */}
         <nav aria-label="Social links" className="flex gap-4">
           {socialLinks.map((s) => (
             <SocialBtn
@@ -574,7 +535,6 @@ function Footer() {
           ))}
         </nav>
 
-        {/* Copyright */}
         <p className="text-[10px] uppercase tracking-widest opacity-50">
           © 2025 U.C.E. Campaign
         </p>
@@ -596,7 +556,6 @@ function SocialBtn({ href = "#", label, icon }) {
       className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#ca8a04] hover:text-[#0f172a] transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ca8a04]"
     >
       {icon}
-      {/* visible to screen readers only (keeps markup accessible) */}
       <span className="sr-only">{label}</span>
     </a>
   );

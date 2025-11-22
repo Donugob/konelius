@@ -1,14 +1,12 @@
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 
-// The "Law/Traditional" Font
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-serif",
   display: "swap",
 });
 
-// The "Modern/Clean" Font
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -20,7 +18,6 @@ export const metadata = {
   description:
     "Portfolio, Vision 2026, and Manifesto of Udemmadu Cornelius Ezechukwu, National LAWSA Vice President Aspirant.",
 
-  // Required for WhatsApp, Facebook, LinkedIn
   openGraph: {
     title: "Udemmadu Cornelius Ezechukwu | National LAWSA VP Aspirant",
     description:
@@ -38,7 +35,6 @@ export const metadata = {
     type: "website",
   },
 
-  // Required for Twitter
   twitter: {
     card: "summary_large_image",
     title: "Udemmadu Cornelius Ezechukwu | National LAWSA VP Aspirant",
@@ -47,7 +43,6 @@ export const metadata = {
     images: ["https://konelius.vercel.app/preview.jpeg"],
   },
 
-  // Optional but good
   metadataBase: new URL("https://konelius.vercel.app"),
 };
 
