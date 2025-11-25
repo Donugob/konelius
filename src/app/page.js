@@ -1,6 +1,11 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import Lenis from "lenis";
 import {
   ArrowRight,
@@ -11,7 +16,6 @@ import {
   Award,
   Gavel,
   Users,
-  Mic,
   Handshake,
   Layers,
   Globe2,
@@ -20,10 +24,15 @@ import {
   Cpu,
   ShieldCheck,
   Eye,
+  X,
 } from "lucide-react";
 
+// !!! IMPORTANT: PASTE THE URL OF THE FLYER HERE !!!
+const FLYER_IMAGE = "/flyer.jpg"; // Replace with the actual link if different
+
 export default function Home() {
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [showWelcome, setShowWelcome] = useState(true);
+
   useEffect(() => {
     const lenis = new Lenis({
       lerp: 0.1,
@@ -44,6 +53,12 @@ export default function Home() {
 
   return (
     <main className="w-full min-h-screen bg-[#0f172a] text-[#F8FAFC] selection:bg-[#ca8a04] selection:text-black">
+      {/* THE WELCOME OVERLAY (FIRST THING SEEN) */}
+      <WelcomeModal
+        isOpen={showWelcome}
+        onClose={() => setShowWelcome(false)}
+      />
+
       <NavBar />
       <HeroSection />
       <AboutSection />
@@ -53,6 +68,91 @@ export default function Home() {
     </main>
   );
 }
+
+// ----------------------------------------------------------------------
+// NEW COMPONENT: WELCOME MODAL (EXECUTIVE INVITATION)
+// ----------------------------------------------------------------------
+function WelcomeModal({ isOpen, onClose }) {
+  // Prevent scrolling when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isOpen]);
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center px-4 bg-[#0f172a]/90 backdrop-blur-md"
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            transition={{
+              type: "spring",
+              damping: 25,
+              stiffness: 300,
+              delay: 0.1,
+            }}
+            className="relative w-full max-w-md md:max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden border border-white/20"
+          >
+            {/* Header / Close Bar */}
+            <div className="absolute top-4 right-4 z-20">
+              <button
+                onClick={onClose}
+                className="p-2 bg-black/50 text-white rounded-full hover:bg-[#ca8a04] hover:text-black transition-colors backdrop-blur-sm"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* The Flyer Image Container */}
+            <div className="w-full bg-gray-100 flex items-center justify-center">
+              {/* 
+                  Using aspect-auto to respect the flyer's dimensions. 
+                  Max-height ensures it fits on smaller screens.
+              */}
+              <img
+                src={FLYER_IMAGE}
+                alt="Welcome Delegate"
+                className="w-full h-auto max-h-[70vh] object-contain"
+              />
+            </div>
+
+            {/* The Action Area (Bottom) */}
+            <div className="p-6 bg-white text-center border-t border-gray-100">
+              <p className="text-[#0f172a] font-serif font-bold text-xl mb-2">
+                Welcome to the Convention
+              </p>
+              <p className="text-gray-500 text-xs uppercase tracking-widest mb-6">
+                A Message from Udemmadu Cornelius
+              </p>
+
+              <button
+                onClick={onClose}
+                className="w-full py-3 bg-[#0f172a] text-white font-bold uppercase tracking-widest text-xs rounded-lg hover:bg-[#ca8a04] hover:text-[#0f172a] transition-all flex items-center justify-center gap-2"
+              >
+                Enter Website <ArrowRight size={16} />
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+// ----------------------------------------------------------------------
+// REST OF THE SITE (UNCHANGED)
+// ----------------------------------------------------------------------
 
 function NavBar() {
   return (
