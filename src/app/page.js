@@ -140,7 +140,7 @@ function WelcomeModal({ isOpen, onClose }) {
                 onClick={onClose}
                 className="w-full py-3 bg-[#0f172a] text-white font-bold uppercase tracking-widest text-xs rounded-lg hover:bg-[#ca8a04] hover:text-[#0f172a] transition-all flex items-center justify-center gap-2"
               >
-                Enter Website <ArrowRight size={16} />
+                Join the Movement <ArrowRight size={16} />
               </button>
             </div>
           </motion.div>
